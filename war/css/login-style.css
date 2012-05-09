@@ -1,0 +1,275 @@
+/* layout and general markup */
+.login-wrapper {
+	margin-top:120px;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+}
+
+.login {
+	border: 1px solid #E5E5E5;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: left;
+	padding: 20px;
+	box-shadow: 0 4px 10px -1px rgba(200, 200, 200, 0.7);
+	-moz-box-shadow: 0 4px 10px -1px rgba(200, 200, 200, 0.7);
+	-webkit-box-shadow: 0 4px 10px -1px rgba(200, 200, 200, 0.7);
+	color: #777777;
+	height: 190px;
+}	
+
+.content {
+	margin-bottom: 10px;
+}
+
+.container-fluid {
+	
+}
+
+.servicewrap {
+	overflow:auto;
+}
+
+.services {
+	margin: auto;
+	margin-top: 70px;
+}
+
+.servicebox {
+	text-align: center;
+	float: left;
+	margin: 10px 10px 10px 10px;
+	width: 80px;
+	padding: 5px 8px 5px 5px;
+}
+
+.section-header {
+	background: #f5f5f5;
+	padding: 10px 10px 10px 10px;
+	clear: both;
+}
+
+.button-group {
+	background: #fcfcfc;
+	padding: 10px 10px 10px 10px;
+	margin-bottom: 10px;
+	overflow: auto;
+}
+
+.wardinfoview {
+	margin-left: 20px;
+}
+
+.wardtitle {
+	display: inline;
+}
+
+.wardpic {
+	float: left;
+	margin-top:15px;
+}
+
+.wardpic {
+	width:150px;
+	float:left;
+	margin-right:15px;
+	height: 150px;
+}
+
+.parent-result {
+	border-top: 1px solid #cccccc;
+	padding:10px;
+}
+
+.content-body {
+	padding: 10px 10px 10px 10px;
+	clear: both;
+}
+
+.recordstatleft {
+	float: left;
+	width: 47%;
+	padding: 10px 10px 10px 10px;
+}
+
+.recordstatright {
+	float: right;
+	width: 47%;
+	padding: 10px 10px 10px 10px;
+}
+
+.clear {
+	clear: both;
+}
+
+.footer {
+	border-top: 1px solid #E5E5E5;
+	/*box-shadow: 0 5px 15px rgba(0, 0, 0, 0.024) inset;
+	-moz-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.024) inset;
+	-ms-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.024) inset;
+	-khtml-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.024) inset;
+	-webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.024) inset;*/
+	min-width: 940px;
+	padding: 30px 0;
+	text-shadow: 0 1px 0 #FFFFFF;
+	margin-top: 17px;
+	padding-top: 17px;
+	clear: both;
+}
+
+.footer p {
+  color: #555;
+}
+
+/* CSS3 stuff */
+.fullyrounded-4px {
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+}
+
+.shadowbox {
+	box-shadow: 0 4px 10px -1px rgba(200, 200, 200, 0.7);
+	-moz-box-shadow: 0 4px 10px -1px rgba(200, 200, 200, 0.7);
+	-webkit-box-shadow: 0 4px 10px -1px rgba(200, 200, 200, 0.7);
+	-khtml-box-shadow: 0 4px 10px -1px rgba(200, 200, 200, 0.7);
+	border: 1px solid #dddddd;
+}
+
+.toprounded-4px {
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	-webkit-border-top-left-radius: 4px;
+	-webkit-border-top-right-radius: 4px;
+	-moz-border-top-left-radius: 4px;
+	-moz-border-top-right-radius: 4px;
+}
+
+.fullyrounded-4px {
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+}
+
+.textshadow {
+	text-shadow: 1px 1px 0 #FFFFFF;
+	-moz-text-shadow: 1px 1px 0 #FFFFFF;
+	-webkit-text-shadow: 1px 1px 0 #FFFFFF;
+	-khtml-text-shadow: 1px 1px 0 #FFFFFF;
+}
+
+.bottomrounded-4px {
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	-webkit-border-bottom-left-radius: 4px;
+	-webkit-border-bottom-right-radius: 4px;
+	-moz-border-bottom-left-radius: 4px;
+	-moz-border-bottom-right-radius: 4px;
+}
+
+/* forms and buttons */
+label {
+	font-size: 15px;
+	font-weight: normal;
+}
+
+form.ward {
+	padding: 0px 0px 0px 50px;
+	overflow: auto;
+}
+
+form.parent {
+	overflow: auto;
+}
+
+/* headings */
+.serviceheading {
+	padding-left: 32px;
+	background: url(../images/services.png) no-repeat left top;
+	vertical-align: middle;
+	text-shadow: #ffffff;
+	padding-top:0px;
+	height: 25px;
+}
+
+.heading1 {
+	background: #ffffff url(../images/white_bg.png) repeat-x center bottom;
+	font-weight: bold;
+	font-size: 18px;
+	font-family: Arial;
+	color: #14588F;
+	padding: 8px;
+	border-bottom: 1px solid #dddddd;
+}
+
+.heading2 {
+	background: #ffffff url(../images/white_bg.png) repeat-x center bottom;
+	font-weight: bold;
+	font-size: 15px;
+	font-family: Arial;
+	color: #666666;
+	padding: 8px;
+	border-bottom: 1px solid #dddddd;
+}
+
+.simple-heading {
+	border-bottom: 1px solid #cccccc;
+	padding: 5px;
+	margin-bottom: 5px;
+}
+
+/* Links and Navigation */
+.servicebox a:hover {
+	text-decoration: none;
+}
+
+.sidebar {
+	
+}
+
+.sidebar ul {
+	list-style-type: none;
+	margin-left: 0;
+	margin-top: 10px;
+}
+
+.sidebar li {
+	
+}
+
+.sidebar a {
+	text-decoration: none;
+	display: block;
+	padding: 5px 10px 5px 15px;
+	color: #666666;
+}
+
+.sidebar a:hover {
+	background-color: #f0f0f0;
+}
+
+.sidebar-content {
+
+}
+
+.sidebar-content a.active {
+	background-color: #d6d6d6;
+}
+
+/* Tables */
+td.gray {
+	background-color: #fcfcfc;
+	border-right: 1px solid #cccccc;
+	width: 50%;
+}
+
+/* intentional bootstrap additions and overrides */
+.form-stacked {
+	padding-left: 8px;
+}
+			
+.form-stacked label {
+	font-weight: normal;
+	color: #777777;
+}
