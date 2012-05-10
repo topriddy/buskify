@@ -6,8 +6,8 @@ import org.apache.log4j.Logger;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.DropDownChoice;
-import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
+import org.apache.wicket.markup.html.form.StatelessForm;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.CompoundPropertyModel;
 
@@ -33,7 +33,7 @@ public class SignInPage extends WebPage {
 		add(new SignInForm("form"));
 	}
 
-	private class SignInForm extends Form {
+	private class SignInForm extends StatelessForm {
 		private String username;
 		private String password;
 		private String role;
