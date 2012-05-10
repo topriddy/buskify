@@ -23,4 +23,8 @@ public class UserSession extends WebSession {
     public boolean isLoggedIn(){
     	return appUser != null;
     }
+    
+    public void setAppUser(AppUser appUser){
+    	this.appUser = appUser;
+    }
 }
