@@ -21,7 +21,7 @@ body {
 	color: #777777;
 	margin: auto;
 	width: 100%;
-	height: 200px;
+	height: 220px;
 }
 
 .login-wrapper {
@@ -36,10 +36,10 @@ body {
 }
 
 .footerText {
-	width: 100%; text-align : center;
+	width: 100%;
+	text-align: center;
 	margin: auto;
 	text-align: center;
-	
 }
 </style>
 </head>
@@ -52,22 +52,33 @@ body {
 		</div>
 		<div class="login">
 			<form wicket:id="form" style="float: right;">
-				<label>Username:</label> <input type="text" name="username"
-					wicket:id="username" /> <label>Password:</label> <input
-					type="password" name="password" wicket:id="password" />
-				<div>
-					<select wicket:id="role">
-						<option>Select a Role</option>
-						<option>Administrator</option>
-						<option>Supervisor</option>
-						<option>Student</option>
-					</select>
+
+				<label>Username:</label>
+				<div class="controls" wicket:id="border_username">
+					<input type="text" name="username" wicket:id="username" />
+				</div>
+				<label>Password:</label>
+				<div class="controls" wicket:id="border_password">
+					<input type="password" name="password" wicket:id="password" />
+				</div>
+				<div class="control-group">
+					<label>Role:</label>
+					<div class="controls" wicket:id="border_role">
+						<select wicket:id="role">
+							<option>Select a Role</option>
+							<option>Administrator</option>
+							<option>Supervisor</option>
+							<option>Student</option>
+						</select>
+					</div>
 				</div>
 				<button type="submit" class="btn btn-primary" style="float: right;"
 					wicket:id="signIn">Sign In</button>
 			</form>
 		</div>
-		<div class="footerText"><strong>By: Ifeanyi Osaka</strong></div>
+		<div class="footerText">
+			<strong>By: Ifeanyi Osaka</strong>
+		</div>
 	</div>
 </body>
 </html>

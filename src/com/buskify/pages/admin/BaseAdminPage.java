@@ -5,6 +5,7 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 
 import com.buskify.components.SignOutLink;
+import com.buskify.pages.admin.project.ProjectManagementPage;
 import com.buskify.security.AdminSecurePage;
 
 public class BaseAdminPage extends WebPage implements AdminSecurePage{

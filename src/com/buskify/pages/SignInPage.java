@@ -9,6 +9,7 @@ import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.StatelessForm;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.form.validation.FormComponentFeedbackBorder;
 import org.apache.wicket.model.CompoundPropertyModel;
 
 import com.buskify.UserSession;
@@ -18,8 +19,7 @@ import com.buskify.dao.SupervisorDao;
 import com.buskify.entity.Admin;
 import com.buskify.entity.Student;
 import com.buskify.entity.Supervisor;
-import com.buskify.pages.admin.AdminWelcomePage;
-import com.buskify.pages.admin.ProjectManagementPage;
+import com.buskify.pages.admin.project.ProjectManagementPage;
 import com.buskify.pages.student.StudentWelcomePage;
 import com.buskify.pages.supervisor.SupervisorWelcomePage;
 
@@ -43,10 +43,10 @@ public class SignInPage extends WebPage {
 			super(id);
 
 			setModel(new CompoundPropertyModel(this));
-			add(new TextField("username"));
-			add(new PasswordTextField("password"));
-			add(new DropDownChoice<String>("role", Arrays.asList(roles)));
-
+			add(new FormComponentFeedbackBorder(("border_username")).add(new TextField("username").setRequired(true)));
+			add(new FormComponentFeedbackBorder(("border_password")).add(new PasswordTextField("password").setRequired(true)));
+			add(new FormComponentFeedbackBorder(("border_role")).add(new DropDownChoice<String>("role", Arrays.asList(roles)).setRequired(true)));
+			
 			add(new Button("signIn") {
 				/**
 				 * 
