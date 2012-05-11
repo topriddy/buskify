@@ -30,7 +30,7 @@ public class BuskifyApplication extends WebApplication {
 		
 		getSecuritySettings().setAuthorizationStrategy(new SecurePageAuthorizationStrategy());
         getSecuritySettings().setUnauthorizedComponentInstantiationListener(new SecurePageAuthorizationStrategy());
-        getRequestCycleSettings().setGatherExtendedBrowserInfo(true);
+//        getRequestCycleSettings().setGatherExtendedBrowserInfo(true);
 
 		getApplicationSettings().setPageExpiredErrorPage(SignInPage.class);
 		getApplicationSettings().setAccessDeniedPage(SignInPage.class);

@@ -3,15 +3,22 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<wicket:head>
+	<script type="text/javascript">
+		$(function() {
+			$('.nav li').removeClass("active");
+			$('#home').addClass("active");
+		});
+	</script>
+</wicket:head>
 </head>
 <body>
 	<wicket:extend>
 		<div class="container-fluid">
 			<div class="row-fluid">
-				<div class="span3 well">
-					<h3>Manage Projects</h3>
-				</div>
-				<div class="span9 well">[stuff to manage projects here]</div>
+				<wicket:child>
+
+				</wicket:child>
 			</div>
 		</div>
 	</wicket:extend>

@@ -19,9 +19,9 @@ body {
 				<a class="brand" href="#">Allocator+</a>
 				<div class="nav-collapse">
 					<ul class="nav">
-						<li class="active"><a href="#">Manage Projects</a></li>
-						<li><a href="#">Manage Supervisors</a></li>
-						<li><a href="#">Manage Students</a></li>
+						<li id="manageProjects"><a href="#" wicket:id="manageProjects">Manage Projects</a></li>
+						<li id="manageSupervisors"><a href="#" wicket:id="manageSupervisors">Manage Supervisors</a></li>
+						<li id="manageStudents"><a href="#" wicket:id="manageStudents">Manage Students</a></li>
 					</ul>
 					<div class="btn-group pull-right">
 						<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -38,7 +38,13 @@ body {
 		</div>
 	</div>
 	<div class="container-fluid">
-		<wicket:child></wicket:child>
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<wicket:child>
+				
+				</wicket:child>
+			</div>
+		</div>
 		<footer>
 			<p style="margin: auto; text-align: center;">&copy; Company 2012
 				- Designed By Ifeanyi Osaka</p>

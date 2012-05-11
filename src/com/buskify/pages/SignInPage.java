@@ -19,6 +19,7 @@ import com.buskify.entity.Admin;
 import com.buskify.entity.Student;
 import com.buskify.entity.Supervisor;
 import com.buskify.pages.admin.AdminWelcomePage;
+import com.buskify.pages.admin.ProjectManagementPage;
 import com.buskify.pages.student.StudentWelcomePage;
 import com.buskify.pages.supervisor.SupervisorWelcomePage;
 
@@ -71,14 +72,16 @@ public class SignInPage extends WebPage {
 			});
 		}
 
-		private void doSignIn(String username, String password, String role){
-			if(role.equalsIgnoreCase(roles[0])){
+		private void doSignIn(String username, String password, String role) {
+			if (role == null)
+				return;
+			if (role.equalsIgnoreCase(roles[0])) {
 				doSignInAsAdministrator(username, password);
-			}else if(role.equalsIgnoreCase(roles[1])){
-				doSignInAsSupervisor(username,password);
-			}else if(role.equalsIgnoreCase(roles[2])){
+			} else if (role.equalsIgnoreCase(roles[1])) {
+				doSignInAsSupervisor(username, password);
+			} else if (role.equalsIgnoreCase(roles[2])) {
 				doSignInAsStudent(username, password);
-			}else{
+			} else {
 				error("Select a role");
 			}
 		}
@@ -91,13 +94,13 @@ public class SignInPage extends WebPage {
 				signInAsAdmin(admin);
 			}
 		}
-		
-		private void signInAsAdmin(Admin admin){
+
+		private void signInAsAdmin(Admin admin) {
 			UserSession.get().bind();
-            UserSession.get().setAppUser(admin);
-            setResponsePage(AdminWelcomePage.class);
+			UserSession.get().setAppUser(admin);
+			setResponsePage(ProjectManagementPage.class);
 		}
-		
+
 		private void doSignInAsSupervisor(String username, String password) {
 			SupervisorDao supervisorDao = new SupervisorDao();
 			Supervisor supervisor = null;
@@ -106,13 +109,13 @@ public class SignInPage extends WebPage {
 				signInAsSupervisor(supervisor);
 			}
 		}
-		
-		private void signInAsSupervisor(Supervisor supervisor){
+
+		private void signInAsSupervisor(Supervisor supervisor) {
 			UserSession.get().bind();
-            UserSession.get().setAppUser(supervisor);
-            setResponsePage(SupervisorWelcomePage.class);
+			UserSession.get().setAppUser(supervisor);
+			setResponsePage(SupervisorWelcomePage.class);
 		}
-		
+
 		private void doSignInAsStudent(String username, String password) {
 			StudentDao studentDao = new StudentDao();
 			Student student = null;
@@ -121,17 +124,15 @@ public class SignInPage extends WebPage {
 				signInAsStudent(student);
 			}
 		}
-		
-		private void signInAsStudent(Student student){
+
+		private void signInAsStudent(Student student) {
 			UserSession.get().bind();
-            UserSession.get().setAppUser(student);
-            setResponsePage(StudentWelcomePage.class);
+			UserSession.get().setAppUser(student);
+			setResponsePage(StudentWelcomePage.class);
 		}
-		
-		//getters and setters
-		
-		
-		
+
+		// getters and setters
+
 		public String getUsername() {
 			return username;
 		}
