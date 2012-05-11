@@ -12,6 +12,7 @@ import com.buskify.pages.SignInPage;
 import com.buskify.pages.admin.AdminWelcomePage;
 import com.buskify.pages.student.StudentWelcomePage;
 import com.buskify.pages.supervisor.SupervisorWelcomePage;
+import com.buskify.security.SecurePageAuthorizationStrategy;
 import com.buskify.util.DataInitialiser;
 
 public class BuskifyApplication extends WebApplication {
@@ -26,10 +27,14 @@ public class BuskifyApplication extends WebApplication {
 		mountPackage("allocator/admin", AdminWelcomePage.class);
 		mountPackage("allocator/supervisor", SupervisorWelcomePage.class);
 		mountPackage("allocator/student", StudentWelcomePage.class);
+		
+		getSecuritySettings().setAuthorizationStrategy(new SecurePageAuthorizationStrategy());
+        getSecuritySettings().setUnauthorizedComponentInstantiationListener(new SecurePageAuthorizationStrategy());
+        getRequestCycleSettings().setGatherExtendedBrowserInfo(true);
 
-//		getApplicationSettings().setPageExpiredErrorPage(SignInPage.class);
-//		getApplicationSettings().setAccessDeniedPage(SignInPage.class);
-//		getApplicationSettings().setInternalErrorPage(SignInPage.class);
+		getApplicationSettings().setPageExpiredErrorPage(SignInPage.class);
+		getApplicationSettings().setAccessDeniedPage(SignInPage.class);
+		getApplicationSettings().setInternalErrorPage(SignInPage.class);
 	}
 
 	/**

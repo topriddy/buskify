@@ -27,4 +27,7 @@ public class UserSession extends WebSession {
     public void setAppUser(AppUser appUser){
     	this.appUser = appUser;
     }
+    public AppUser getAppUser(){
+    	return appUser;
+    }
 }
