@@ -13,6 +13,7 @@ public class Project {
 	private String title;
 	private int max = 1;
 	private String description;
+	private Key<Supervisor>supervisor;
 	
 	public Project(){
 		
