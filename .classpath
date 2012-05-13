@@ -48,5 +48,6 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/wicket-request-1.5.6.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/wicket-util-1.5.6.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/wicket-objectsizeof-agent-1.5.6.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/lombok.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

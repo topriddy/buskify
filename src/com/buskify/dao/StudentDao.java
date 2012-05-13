@@ -1,5 +1,8 @@
 package com.buskify.dao;
 
+import java.util.List;
+
+import com.buskify.entity.Project;
 import com.buskify.entity.Student;
 
 public class StudentDao extends AbstractDao<Student>{
@@ -14,5 +17,9 @@ public class StudentDao extends AbstractDao<Student>{
 		}
 
 		return ofy().query(Student.class).filter("username", username).get();
+	}
+	
+	public List<Student> findByProject(Project project){
+		return ofy().query(Student.class).filter("assignedProject", project).list();
 	}
 }

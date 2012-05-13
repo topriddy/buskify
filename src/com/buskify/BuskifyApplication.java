@@ -25,7 +25,6 @@ public class BuskifyApplication extends WebApplication {
 
 		mountPackage("allocator", SignInPage.class);
 		mountPackage("allocator/admin", ProjectManagementPage.class);
-		mountPackage("allocator/supervisor", SupervisorWelcomePage.class);
 		mountPackage("allocator/student", StudentWelcomePage.class);
 		
 		getSecuritySettings().setAuthorizationStrategy(new SecurePageAuthorizationStrategy());

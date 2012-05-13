@@ -3,6 +3,7 @@ package com.buskify.dao;
 import java.util.List;
 
 import com.buskify.entity.Admin;
+import com.buskify.entity.Project;
 import com.buskify.entity.Student;
 import com.buskify.entity.Supervisor;
 import com.googlecode.objectify.ObjectifyService;
@@ -14,6 +15,7 @@ public abstract class AbstractDao<T> extends DAOBase{
 		ObjectifyService.register(Student.class);
 		ObjectifyService.register(Admin.class);
 		ObjectifyService.register(Supervisor.class);
+		ObjectifyService.register(Project.class);
 	}
 	
 	public AbstractDao(Class<T> clazz){
