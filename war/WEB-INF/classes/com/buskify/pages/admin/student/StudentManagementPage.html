@@ -16,13 +16,22 @@
 		<div class="span3 well">
 			<ul class="nav nav-list">
 				<li class="nav-header">Student Management</li>
-				<li class="active"><a href="#"><i class="icon-book"></i>View
-						All</a></li>
+				<li id="viewAll"><a href="#" wicket:id="viewAllLink"><i
+						class="icon-book"></i>View All</a></li>
+				<li id="newStudent"><a href="#" wicket:id="newStudentLink"><i
+						class="icon-plus"></i>Add New </a></li>
+				<li id="editStudent"><a href="#" wicket:id="editLink"><i
+						class="icon-pencil"></i>Search & Edit</a></li>
+				<li id="batchUpload"><a href="#" wicket:id="batchUploadLink"><i
+						class="icon-upload"></i>Batch Upload</a></li>
 				<li class="nav-header">Help</li>
-				<li><a href="#"><i class="icon-eye-open"></i>Help</a></li>
+				<li id="help"><a href="#" wicket:id="helpLink"><i
+						class="icon-eye-open"></i>Help</a></li>
 			</ul>
 		</div>
-		<div class="span9 well">Student View</div>
+		<div class="span9 well">
+			<div wicket:id="PANEL"></div>
+		</div>
 	</wicket:extend>
 </body>
 </html>
