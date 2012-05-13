@@ -5,9 +5,10 @@ import javax.persistence.Id;
 import lombok.Data;
 
 import com.googlecode.objectify.Key;
+import java.io.Serializable;
 
 @Data
-public class Project {
+public class Project implements Serializable {
 	@Id
 	private Long id;
 	private String title;

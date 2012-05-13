@@ -16,15 +16,44 @@
 	<wicket:panel>
 		<h4>New Project</h4>
 		<div>
-			<form class="form-horizontal">
+			<form class="form-horizontal" wicket:id="form">
+				<div wicket:id="feedback"></div>
 				<fieldset>
-					<legend>Legend text</legend>
+					<!-- <legend>Legend text</legend> -->
 					<div class="control-group">
-						<label class="control-label" for="input01">Text input</label>
-						<div class="controls">
-							<input type="text" class="input-xlarge" id="input01">
-							<p class="help-block">Supporting help text</p>
+						<label class="control-label" for="title">Title:</label>
+						<div class="controls" wicket:id="title_border">
+							<input type="text" class="input-xlarge" wicket:id="title" id="title">
 						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="max">Max. of
+							Assignment:</label>
+						<div class="controls" wicket:id="max_border">
+							<input type="text" class="input-xlarge" wicket:id="max" id="max">
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="description">Description:</label>
+						<div class="controls" wicket:id="description_border" id="description">
+							<textarea class="input-xlarge" id="description" rows="3" wicket:id="description"></textarea>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="supervisor">Supervisor:</label>
+						<div class="controls">
+							<select wicket:id="supervisor" id="supervisor">
+								<option>something</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-actions">
+						<button type="submit" class="btn btn-primary" wicket:id="saveAndNew">Save & New </button>
+						<button class="btn">Cancel</button>
 					</div>
 				</fieldset>
 			</form>
