@@ -6,12 +6,13 @@ import org.apache.wicket.pageStore.memory.MemorySizeEvictionStrategy;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
+import org.apache.wicket.session.HttpSessionStore;
+import org.apache.wicket.session.ISessionStore;
 import org.apache.wicket.util.lang.Bytes;
 
 import com.buskify.pages.SignInPage;
 import com.buskify.pages.admin.project.ProjectManagementPage;
 import com.buskify.pages.student.StudentWelcomePage;
-import com.buskify.pages.supervisor.SupervisorWelcomePage;
 import com.buskify.security.SecurePageAuthorizationStrategy;
 import com.buskify.util.DataInitialiser;
 

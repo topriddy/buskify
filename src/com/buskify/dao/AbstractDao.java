@@ -24,6 +24,10 @@ public abstract class AbstractDao<T> extends DAOBase{
 	public void delete(Object o){
 		ofy().delete(o);
 	}
+	
+	public void deleteAll(){
+		ofy().delete(findAll());
+	}
 
     public T load(long id){
     	return ofy().find(clazz, id);
@@ -31,6 +35,9 @@ public abstract class AbstractDao<T> extends DAOBase{
     
     public void save(Object o){
     	ofy().put(o);
+    }
+    public void saveAll(List<T> olist){
+    	ofy().put(olist);
     }
 
     public List<T> findAll(){

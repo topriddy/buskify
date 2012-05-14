@@ -16,7 +16,8 @@
 		<h4>List of Added Projects</h4>
 		<div>
 			<div wicket:id="emptyListMessage" class="alert alert-info">
-				<span class="badge badge-info">Empty!!</span>There is no project added in the system yet.
+				<span class="badge badge-info">Empty!!</span>There is no project
+				added in the system yet.
 			</div>
 			<div wicket:id="dataListContainer">
 				<table class="table table-striped table-bordered table-condensed">
@@ -25,6 +26,7 @@
 							<th>S/N</th>
 							<th>Project Title</th>
 							<th>Max. Assignable Student</th>
+							<th>Actions</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -32,25 +34,19 @@
 							<td wicket:id="snos">1.</td>
 							<td wicket:id="title">Some Title</td>
 							<td wicket:id="max">2</td>
+							<td>
+								<ul class="action-menu">
+									<li><a href="#">Actions</a>
+										<ul>
+											<li><a href="#" wicket:id="editLink">View/Edit</a></li>
+											<li><a href="#" wicket:id="deleteLink">Delete</a></li>
+										</ul></li>
+								</ul>
+							</td>
 						</tr>
-						<wicket:remove>
-							<tr>
-								<td>2.</td>
-								<td>Some Title</td>
-								<td>2</td>
-								<td>Yes</td>
-								<td>Action</td>
-							</tr>
-							<tr>
-								<td>3.</td>
-								<td>Some Title</td>
-								<td>2</td>
-								<td>Yes</td>
-								<td>Action</td>
-							</tr>
-						</wicket:remove>
 					</tbody>
 				</table>
+				<div wicket:id="pagingNavigator"></div>
 			</div>
 		</div>
 	</wicket:panel>

@@ -1,6 +1,75 @@
-@CHARSET "ISO-8859-1";
+/* Action Menu CSS Below*/
+/* ------------------------------------------------------------------------ */
+/* =MENU (layout and functionality)                                         */
+/* ------------------------------------------------------------------------ */
 
-h3{
-	font-size: 1em;
-	color: green;
+/* EasyClearing (overflow won't work since we use positioning) */
+.action-menu:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
 }
+
+/* reset list styling */
+.action-menu, .action-menu ul { list-style: none; margin: 0; padding: 0; }
+
+/* root level list items are in line with each other */
+.action-menu > li { float: left; }
+
+/* nested lists will be positioned relatively to the parent list item */
+.action-menu li { position: relative; }
+
+.action-menu a,
+.action-menu span {
+    display: block;
+    white-space: nowrap;
+}
+
+/* nested lists start off as hidden */
+.action-menu ul { display: none; position: absolute; }
+
+/* and show up on parent hovering their parent list item */
+.action-menu li:hover > ul { display: block; }
+
+.action-menu ul {
+    right: 100%;
+    position: absolute;
+    bottom: 0;
+}
+.action-menu ul ul {
+    right: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+/* ------------------------------------------------------------------------ */
+/* =MENU (typography and colours)                                           */
+/* ------------------------------------------------------------------------ */
+
+/* root level */
+
+.action-menu a,
+.action-menu span {
+    background: #eee;
+    border: 1px solid #fff;
+    border-right-color: #ccc;
+    border-bottom-color: #ccc;
+    color: #000;
+    font: bold 11px/22px Verdana, Arial, Helvetica, sans-serif;
+    padding: 3px 6px;
+    text-decoration: none;
+}
+
+.action-menu span {
+    color: #666;
+    cursor: default;
+}
+
+.action-menu a:hover,
+.action-menu a:focus {
+    background: #ccc;
+    color: #fff;
+}
+/*ends*/
