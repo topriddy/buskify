@@ -24,7 +24,7 @@ import com.buskify.util.ExcelUtil;
 public class UploadProjectPanel extends Panel {
 	public UploadProjectPanel(String id) {
 		super(id);
-		add(new UploadProjectForm("form"));
+//		add(new UploadProjectForm("form"));
 	}
 
 	private class UploadProjectForm extends Form {
@@ -62,7 +62,6 @@ public class UploadProjectPanel extends Panel {
 					boolean overwrite = false;
 					if (upload != null) {
 						overwrite = (uploadChoice == uploadOptions.get(0));
-//						processFileUpload(uploads.get(0), overwrite);
 					}
 					log.debug("Overwrite: " + overwrite);
 					UploadProjectForm.this.info("Upload Successfully");

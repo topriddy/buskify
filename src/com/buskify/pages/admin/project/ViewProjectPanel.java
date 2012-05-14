@@ -26,11 +26,10 @@ import com.buskify.entity.Project;
 
 @Log4j
 public class ViewProjectPanel extends Panel {
-	private final int ROW = 100;
+	private final int ROW = 30;
 
 	public ViewProjectPanel(String id) {
 		super(id);
-
 	}
 
 	@Override
@@ -43,7 +42,6 @@ public class ViewProjectPanel extends Panel {
 				// TODO Auto-generated method stub
 				return (ArrayList<Project>) new ProjectDao().findAll();
 			}
-
 		};
 		
 		WebMarkupContainer emptyListMessageContainer = new WebMarkupContainer(

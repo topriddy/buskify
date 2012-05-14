@@ -65,9 +65,9 @@ public class BuskifyApplication extends WebApplication {
 		return new UserSession(request);
 	}
 
-	@Override
+	/*@Override
 	protected WebRequest newWebRequest(final HttpServletRequest servletRequest, String prefix) {
 		return new GaeSafeServletWebRequest(servletRequest, prefix);
-	}
+	}*/
 
 }

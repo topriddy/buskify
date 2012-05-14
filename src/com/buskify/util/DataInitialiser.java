@@ -1,5 +1,7 @@
 package com.buskify.util;
 
+import java.io.InputStream;
+import java.util.List;
 import java.util.logging.Logger;
 
 import com.buskify.dao.AdminDao;
@@ -7,6 +9,7 @@ import com.buskify.dao.ProjectDao;
 import com.buskify.dao.StudentDao;
 import com.buskify.dao.SupervisorDao;
 import com.buskify.entity.Admin;
+import com.buskify.entity.Project;
 import com.buskify.entity.Student;
 import com.buskify.entity.Supervisor;
 
@@ -26,11 +29,15 @@ public class DataInitialiser {
 
 	public static void initWithDefaultData() {
 		log.info("Data Initializer.....");
-		// deleteAll();
+		deleteAll();
 
 		initAdminWithDefaultData();
 		initStudentWithDefaultData();
 		initSupervisorWithDefaultData();
+		
+		loadProjectsToDB();
+		loadSupervisorsToDB();
+		loadStudentsToDB();
 	}
 
 	private static void deleteAll() {
@@ -76,4 +83,33 @@ public class DataInitialiser {
 		}
 	}
 
+	private static void loadProjectsToDB(){
+		InputStream in = DataInitialiser.class.getResourceAsStream("project_upload_sample.xls");
+		ProjectDao projectDao = new ProjectDao();
+		projectDao.deleteAll();
+		
+		List<Project> projectList = ExcelUtil.extractProjects(in);
+		projectDao.saveAll(projectList);
+		log.info("Loaded All Projects Successfully");
+	}
+	
+	private static void loadSupervisorsToDB(){
+		InputStream in = DataInitialiser.class.getResourceAsStream("supervisor_upload_sample.xls");
+		SupervisorDao supervisorDao = new SupervisorDao();
+		supervisorDao.deleteAll();
+		
+		List<Supervisor> supervisorList = ExcelUtil.extractSupervisors(in);
+		supervisorDao.saveAll(supervisorList);
+		log.info("Loaded All Supervisors Successfully");
+	}
+	
+	private static void loadStudentsToDB(){
+		InputStream in = DataInitialiser.class.getResourceAsStream("student_upload_sample.xls");
+		StudentDao studentDao = new StudentDao();
+		studentDao.deleteAll();
+		
+		List<Student> studentList = ExcelUtil.extractStudents(in);
+		studentDao.saveAll(studentList);
+		log.info("Loaded All Students Successfully");
+	}
 }
