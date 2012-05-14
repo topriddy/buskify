@@ -34,12 +34,16 @@ public class UploadProjectPanel extends Panel {
 				"Overwrite Existing Data", "Append to Existing Data" });
 		private String uploadChoice = uploadOptions.get(0);
 
+		
 		public UploadProjectForm(String id) {
 			super(id);
 			setMultiPart(true);
 			setMaxSize(Bytes.kilobytes(300));
 
-			add(fileUploadField = new FileUploadField("fileUploadField"));
+
+			add(fileUploadField = new FileUploadField("fileUploadField"){
+				
+			});
 
 			RadioChoice uploadRadioChoice = new RadioChoice("uploadChoice",
 					Model.of(uploadChoice), uploadOptions).setSuffix("").setPrefix("");
@@ -53,12 +57,14 @@ public class UploadProjectPanel extends Panel {
 
 				@Override
 				public void onSubmit() {
-					final List<FileUpload> uploads = fileUploadField
-							.getFileUploads();
-					if (uploads != null) {
-						boolean overwrite = (uploadChoice == uploadOptions.get(0));
-						processFileUpload(uploads.get(0), overwrite);
+					final FileUpload upload = fileUploadField
+							.getFileUpload();
+					boolean overwrite = false;
+					if (upload != null) {
+						overwrite = (uploadChoice == uploadOptions.get(0));
+//						processFileUpload(uploads.get(0), overwrite);
 					}
+					log.debug("Overwrite: " + overwrite);
 					UploadProjectForm.this.info("Upload Successfully");
 				}
 			});
