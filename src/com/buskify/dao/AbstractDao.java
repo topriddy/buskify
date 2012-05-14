@@ -37,6 +37,10 @@ public abstract class AbstractDao<T> extends DAOBase{
     	return ofy().query(clazz).list();
     }
     
+    public List<T>findAll(int start, int count){
+    	return ofy().query(clazz).list().subList(start, start + count);
+    }
+    
     public int countAll() {
     	return ofy().query(clazz).list().size();
     }

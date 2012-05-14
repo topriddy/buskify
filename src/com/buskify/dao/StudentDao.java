@@ -22,4 +22,5 @@ public class StudentDao extends AbstractDao<Student>{
 	public List<Student> findByProject(Project project){
 		return ofy().query(Student.class).filter("assignedProject", project).list();
 	}
+	
 }
