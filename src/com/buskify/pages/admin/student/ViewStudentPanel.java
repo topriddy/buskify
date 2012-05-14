@@ -56,7 +56,6 @@ public class ViewStudentPanel extends Panel {
 				final Student student = item.getModelObject();
 				item.setModel(new CompoundPropertyModel(student));
 				item.add(new Label("snos", Model.of(item.getIndex() + 1)));
-				item.add(new Label("fullName"));
 				item.add(new Label("stream"));
 				item.add(new Label("course"));
 				item.add(new Label("number"));

@@ -54,7 +54,7 @@ public class ExcelUtil {
 				
 				String firstName = fullName.split(" ")[0];
 				String lastName = fullName.split(" ")[1];
-				String username = firstName.substring(0,1) + lastName;
+				String username = (firstName.substring(0,1) + lastName).toLowerCase();
 				
 				Supervisor supervisor = new Supervisor();
 				supervisor.setFullName(fullName);

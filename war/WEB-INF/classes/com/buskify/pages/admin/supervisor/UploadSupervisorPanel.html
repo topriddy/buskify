@@ -13,7 +13,26 @@
 </head>
 <body>
 <wicket:panel>
-	Upload Supervisor
-</wicket:panel>
+		<h4>Upload Supervisors</h4>
+		<form class="form-horizontal" wicket:id="form">
+			<!-- <div wicket:id="feedback"></div> -->
+			<fieldset>
+				<div class="control-group">
+					<label class="control-label" for="fileInput">Select Excel
+						File: </label>
+					<div class="controls">
+						<input class="input-file" id="fileInput" type="file"
+							wicket:id="fileUploadField">
+						<button type="button" class="btn btn-primary" wicket:id="upload">Upload</button>
+						<button type="button" class="btn" wicket:id="download">Download
+							Template</button>
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls" wicket:id="uploadChoice"></div>
+				</div>
+			</fieldset>
+		</form>
+	</wicket:panel>
 </body>
 </html>

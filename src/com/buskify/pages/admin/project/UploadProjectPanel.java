@@ -3,6 +3,7 @@ package com.buskify.pages.admin.project;
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 import lombok.extern.log4j.Log4j;
 
@@ -24,7 +25,7 @@ import com.buskify.util.ExcelUtil;
 public class UploadProjectPanel extends Panel {
 	public UploadProjectPanel(String id) {
 		super(id);
-//		add(new UploadProjectForm("form"));
+		add(new UploadProjectForm("form"));
 	}
 
 	private class UploadProjectForm extends Form {
@@ -57,13 +58,14 @@ public class UploadProjectPanel extends Panel {
 
 				@Override
 				public void onSubmit() {
-					final FileUpload upload = fileUploadField
-							.getFileUpload();
-					boolean overwrite = false;
-					if (upload != null) {
-						overwrite = (uploadChoice == uploadOptions.get(0));
-					}
-					log.debug("Overwrite: " + overwrite);
+//					final FileUpload upload = fileUploadField
+//							.getFileUpload();
+//					boolean overwrite = false;
+//					if (upload != null) {
+//						overwrite = (uploadChoice == uploadOptions.get(0));
+//					}
+//					log.debug("Overwrite: " + overwrite);
+//					processFileUpload(upload, overwrite);
 					UploadProjectForm.this.info("Upload Successfully");
 				}
 			});
@@ -87,7 +89,9 @@ public class UploadProjectPanel extends Panel {
 		
 		private DownloadLink getDownloadLink(){
 			File file = new File(UploadProjectPanel.class.getResource("project_upload_template.xls").getFile());
-			DownloadLink downloadLink = new DownloadLink("download", file);
+			String uuid = UUID.randomUUID().toString();
+			String fileName = String.format("project_upload_template%s.xls",uuid);
+			DownloadLink downloadLink = new DownloadLink("download", file,fileName);
 			return downloadLink;
 		}
 	}

@@ -86,7 +86,7 @@ public class DataInitialiser {
 	private static void loadProjectsToDB(){
 		InputStream in = DataInitialiser.class.getResourceAsStream("project_upload_sample.xls");
 		ProjectDao projectDao = new ProjectDao();
-		projectDao.deleteAll();
+//		projectDao.deleteAll();
 		
 		List<Project> projectList = ExcelUtil.extractProjects(in);
 		projectDao.saveAll(projectList);
@@ -96,7 +96,7 @@ public class DataInitialiser {
 	private static void loadSupervisorsToDB(){
 		InputStream in = DataInitialiser.class.getResourceAsStream("supervisor_upload_sample.xls");
 		SupervisorDao supervisorDao = new SupervisorDao();
-		supervisorDao.deleteAll();
+//		supervisorDao.deleteAll();
 		
 		List<Supervisor> supervisorList = ExcelUtil.extractSupervisors(in);
 		supervisorDao.saveAll(supervisorList);
@@ -106,7 +106,7 @@ public class DataInitialiser {
 	private static void loadStudentsToDB(){
 		InputStream in = DataInitialiser.class.getResourceAsStream("student_upload_sample.xls");
 		StudentDao studentDao = new StudentDao();
-		studentDao.deleteAll();
+//		studentDao.deleteAll();
 		
 		List<Student> studentList = ExcelUtil.extractStudents(in);
 		studentDao.saveAll(studentList);
