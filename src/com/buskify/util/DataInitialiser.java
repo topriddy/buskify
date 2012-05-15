@@ -64,6 +64,10 @@ public class DataInitialiser {
 		StudentDao studentDao = new StudentDao();
 		Student student = new Student("student", "password");
 		student.setFullName("Default User");
+		student.setNumber("DEFAULT_USER");
+		student.setCourse("DEFAULT_USER");
+		student.setStream("DEFAULT_USER");
+		
 		if (studentDao.findByUsername(student.getUsername()) == null) {
 			log.info("Student Does Not Already Exists...now attempting to create");
 			studentDao.save(student);
