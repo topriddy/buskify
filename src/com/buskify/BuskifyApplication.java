@@ -21,7 +21,7 @@ public class BuskifyApplication extends WebApplication {
 		super.init();
 		BasicConfigurator.configure();
 		getResourceSettings().setResourcePollFrequency(null);
-		initWithTestData();
+//		initWithTestData();
 
 		mountPackage("allocator", SignInPage.class);
 		mountPackage("allocator/admin", ProjectManagementPage.class);

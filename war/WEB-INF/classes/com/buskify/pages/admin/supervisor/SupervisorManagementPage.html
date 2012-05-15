@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<wicket:head>
+	<script type="text/javascript">
+		$(function() {
+			$('#manageSupervisors').addClass("active");
+		});
+	</script>
+</wicket:head>
+</head>
+<body>
+	<wicket:extend>
+		<div class="span3 well">
+			<ul class="nav nav-list">
+				<li class="nav-header">Supervisor Management</li>
+				<li id="viewAll"><a href="#" wicket:id="viewAllLink"><i
+						class="icon-book"></i>View All</a></li>
+				<li id="newSupervisor"><a href="#" wicket:id="newSupervisorLink"><i
+						class="icon-plus"></i>Add New </a></li>
+				<li id="editSupervisor"><a href="#" wicket:id="editLink"><i
+						class="icon-pencil"></i>Search & Edit</a></li>
+				<li id="batchUpload"><a href="#" wicket:id="batchUploadLink"><i
+						class="icon-upload"></i>Batch Upload</a></li>
+				<li class="nav-header">Help</li>
+				<li id="help"><a href="#" wicket:id="helpLink"><i
+						class="icon-eye-open"></i>Help</a></li>
+			</ul>
+		</div>
+		<div class="span9 well">
+			<div wicket:id="PANEL"></div>
+		</div>
+	</wicket:extend>
+</body>
+</html>

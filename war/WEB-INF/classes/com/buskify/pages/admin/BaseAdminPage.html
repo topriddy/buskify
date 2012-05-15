@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Allocator - Admin Module</title>
+<link rel="stylesheet" type="text/css"
+	href="bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="css/styles.css" />
+<script type="text/javascript" src="/bootstrap/js/jquery-1.7.1.js"></script>
+<style type="text/css">
+body {
+	padding-top: 50px;
+}
+</style>
+</head>
+<body>
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<a class="brand" href="#">Allocator+</a>
+				<div class="nav-collapse">
+					<ul class="nav">
+						<li id="manageProjects"><a href="#"
+							wicket:id="manageProjects">Manage Projects</a></li>
+						<li id="manageSupervisors"><a href="#"
+							wicket:id="manageSupervisors">Manage Supervisors</a></li>
+						<li id="manageStudents"><a href="#"
+							wicket:id="manageStudents">Manage Students</a></li>
+					</ul>
+					<div class="btn-group pull-right">
+						<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+							<i class="icon-user"></i> Administrator <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Profile</a></li>
+							<li class="divider"></li>
+							<li><a href="#" wicket:id="signOut">Sign Out</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<wicket:child>
+
+				</wicket:child>
+			</div>
+		</div>
+		<footer>
+			<p style="margin: auto; text-align: center;">&copy; Company 2012
+				- Designed By Ifeanyi Osaka</p>
+		</footer>
+	</div>
+	<!--  Le Javascript -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="bootstrap/js/jquery-1.7.1.js"></script>
+	<script src="bootstrap/js/bootstrap-transition.js"></script>
+	<script src="bootstrap/js/bootstrap-alert.js"></script>
+	<script src="bootstrap/js/bootstrap-modal.js"></script>
+	<script src="bootstrap/js/bootstrap-dropdown.js"></script>
+	<script src="bootstrap/js/bootstrap-scrollspy.js"></script>
+	<script src="bootstrap/js/bootstrap-tab.js"></script>
+	<script src="bootstrap/js/bootstrap-tooltip.js"></script>
+	<script src="bootstrap/js/bootstrap-popover.js"></script>
+	<script src="bootstrap/js/bootstrap-button.js"></script>
+	<script src="bootstrap/js/bootstrap-collapse.js"></script>
+	<script src="bootstrap/js/bootstrap-carousel.js"></script>
+	<script src="bootstrap/js/bootstrap-typeahead.js"></script>
+</body>
+</html>
