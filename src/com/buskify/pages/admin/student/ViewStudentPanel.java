@@ -21,7 +21,7 @@ import com.buskify.entity.Student;
 
 @Log4j
 public class ViewStudentPanel extends Panel {
-	private final int ROW = 50;
+	private final int ROW = 20;
 
 	public ViewStudentPanel(String id) {
 		super(id);
