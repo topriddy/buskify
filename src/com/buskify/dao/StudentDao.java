@@ -7,7 +7,9 @@ import java.util.Map;
 
 import com.buskify.entity.Project;
 import com.buskify.entity.Student;
+import com.buskify.entity.Supervisor;
 import com.googlecode.objectify.Key;
+import com.googlecode.objectify.Query;
 
 public class StudentDao extends AbstractDao<Student> {
 
@@ -48,5 +50,11 @@ public class StudentDao extends AbstractDao<Student> {
 		}
 		return projects;
 
+	}
+	
+	public List<Student> findBySupervisor(Supervisor supervisor){
+		Query<Student> query= ofy().query(Student.class).
+				filter("assignedProject", new Key<Supervisor>(Supervisor.class, supervisor.getId()));
+		return query.list();
 	}
 }

@@ -26,7 +26,7 @@ import com.buskify.entity.Project;
 
 @Log4j
 public class ViewProjectPanel extends Panel {
-	private final int ROW = 15;
+	private final int ROW = 10;
 
 	public ViewProjectPanel(String id) {
 		super(id);

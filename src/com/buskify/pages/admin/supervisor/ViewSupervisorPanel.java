@@ -21,7 +21,7 @@ import com.buskify.entity.Supervisor;
 
 @Log4j
 public class ViewSupervisorPanel extends Panel {
-	private final int ROW = 15;
+	private final int ROW = 10;
 	public ViewSupervisorPanel(String id){
 		super(id);
 	}
