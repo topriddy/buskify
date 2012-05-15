@@ -16,6 +16,15 @@ public class StudentDao extends AbstractDao<Student> {
 	public StudentDao() {
 		super(Student.class);
 	}
+	
+	public void deleteAllExemptDefaultStudent(){
+		List<Student> students = findAll();
+		Student defaultStudent = findByUsername("student");
+		if(defaultStudent != null && students.contains(defaultStudent)){
+			students.remove(defaultStudent);
+		}
+		ofy().delete(students);
+	}
 
 	public Student findByUsername(String username) {
 		if (username == null || username.equals("")) {

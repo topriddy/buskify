@@ -13,10 +13,19 @@
 </head>
 <body>
 	<wicket:panel>
-		<h4>Project Allocation</h4>
-		<div class="alert alert-error">
-			Settings Functionality not yet implemented.
-		</div>
+		<div wicket:id="feedback"></div>
+		<h4>Misc Tasks</h4>
+		<p>
+			Initialize System - Would Delete all records in system and then reload data.
+		</p>
+		<form class="form-horizontal">
+			<div class="control-group">
+				<label class="control-label">ReInitialize System </label>
+				<div class="controls">
+					<a class="btn" href="#" wicket:id="initializeLink">Initialize</a>
+				</div>
+			</div>
+		</form>
 	</wicket:panel>
 </body>
 </html>

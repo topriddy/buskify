@@ -13,10 +13,17 @@
 </head>
 <body>
 	<wicket:panel>
-		<h4>Project Allocation</h4>
-		<div class="alert alert-error">
-			Reset Allocation Functionality not yet implemented.
+		<div wicket:id="feedback">
+			
 		</div>
+		<h4>Reset Student-Project Allocation</h4>
+		<p>
+			This functionality deallocates students from their projects hence reinitializing the system to
+			state where no project is assigned to any student. Use with caution!
+		</p>
+		<p>
+			<a class="btn" href="#" wicket:id="resetAllocation">Reset Allocations</a>
+		</p>
 	</wicket:panel>
 </body>
 </html>
