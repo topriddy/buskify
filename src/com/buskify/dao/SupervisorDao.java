@@ -20,7 +20,6 @@ public class SupervisorDao extends AbstractDao<Supervisor> {
 			return null;
 		}
 
-		return ofy().query(Supervisor.class).filter("fullName", fullName).get();
+		return ofy().query(Supervisor.class).filter("fullName", fullName.trim()).get();
 	}
-	
 }

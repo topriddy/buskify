@@ -1,17 +1,14 @@
 package com.buskify;
 
-import javax.servlet.http.HttpServletRequest;
-
+import org.apache.log4j.BasicConfigurator;
 import org.apache.wicket.Session;
 import org.apache.wicket.pageStore.memory.DataStoreEvictionStrategy;
 import org.apache.wicket.pageStore.memory.MemorySizeEvictionStrategy;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
-import org.apache.wicket.request.http.WebRequest;
 import org.apache.wicket.util.lang.Bytes;
 
-import com.buskify.gae.GaeSafeServletWebRequest;
 import com.buskify.pages.SignInPage;
 import com.buskify.pages.admin.project.ProjectManagementPage;
 import com.buskify.pages.student.StudentWelcomePage;
@@ -22,7 +19,7 @@ public class BuskifyApplication extends WebApplication {
 
 	protected void init() {
 		super.init();
-		// BasicConfigurator.configure();
+		BasicConfigurator.configure();
 		getResourceSettings().setResourcePollFrequency(null);
 		initWithTestData();
 

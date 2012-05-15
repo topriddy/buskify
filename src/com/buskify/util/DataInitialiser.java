@@ -1,6 +1,7 @@
 package com.buskify.util;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -16,7 +17,7 @@ import com.buskify.entity.Supervisor;
 public class DataInitialiser {
 	private static final Logger log = Logger.getLogger(DataInitialiser.class
 			.getName());
-	private final String[] supervisors = { "Victor Khan", "Maggie Striesand",
+	private static final String[] supervisors = { "Victor Khan", "Maggie Striesand",
 			"James Watson", "William Bennet", "Phil Newton", "Jeremiah Alfie",
 			"Mamoud Kamara", "Abiodun Davids", "Charles Walter",
 			"Paul Reichard", "Peter Jacobs", "David Nkume", "John Lewis",
@@ -35,9 +36,10 @@ public class DataInitialiser {
 		initStudentWithDefaultData();
 		initSupervisorWithDefaultData();
 		
+//		loadSupervisorsToDBVariant();
 		loadSupervisorsToDB();
-		loadProjectsToDB();
 		loadStudentsToDB();
+		loadProjectsToDB();
 	}
 
 	private static void deleteAll() {
@@ -103,6 +105,15 @@ public class DataInitialiser {
 		log.info("Loaded All Supervisors Successfully");
 	}
 	
+	private static void loadSupervisorsToDBVariant(){
+		SupervisorDao supervisorDao = new SupervisorDao();
+//		supervisorDao.deleteAll();
+		
+		List<Supervisor> supervisorList = getSupervisorList(supervisors);
+		supervisorDao.saveAll(supervisorList);
+		log.info("Loaded All Supervisors Successfully");
+	}
+	
 	private static void loadStudentsToDB(){
 		InputStream in = DataInitialiser.class.getResourceAsStream("student_upload_sample.xls");
 		StudentDao studentDao = new StudentDao();
@@ -111,5 +122,24 @@ public class DataInitialiser {
 		List<Student> studentList = ExcelUtil.extractStudents(in);
 		studentDao.saveAll(studentList);
 		log.info("Loaded All Students Successfully");
+	}
+	
+	private static List<Supervisor> getSupervisorList(String[] supervisorFullNames){
+		List<Supervisor>supervisorList = new ArrayList<Supervisor>();
+		for(String fullName: supervisorFullNames){
+
+			String firstName = fullName.split(" ")[0];
+			String lastName = fullName.split(" ")[1];
+			String username = (firstName.substring(0, 1) + lastName)
+					.toLowerCase();
+
+			Supervisor supervisor = new Supervisor();
+			supervisor.setFullName(fullName.trim());
+			supervisor.setUsername(username);
+			supervisor.setPassword("password");
+
+			supervisorList.add(supervisor);
+		}
+		return supervisorList;
 	}
 }

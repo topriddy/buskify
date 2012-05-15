@@ -45,6 +45,9 @@ public class ExcelUtil {
 					if(supervisor != null){
 						supervisorKey = new Key<Supervisor>(Supervisor.class, supervisor.getId());
 						project.setSupervisor(supervisorKey);
+					}else{
+						//supervisor not found
+						log.debug(String.format("Supervisor [%s]not found for Project[%s]: ",supervisorFullName, project.getTitle()));
 					}
 				}
 				
