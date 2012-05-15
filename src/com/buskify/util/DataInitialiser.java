@@ -36,16 +36,16 @@ public class DataInitialiser {
 		initStudentWithDefaultData();
 		initSupervisorWithDefaultData();
 		
-//		loadSupervisorsToDBVariant();
-		loadSupervisorsToDB();
+		loadSupervisorsToDBVariant();
+//		loadSupervisorsToDB();
 		loadStudentsToDB();
 		loadProjectsToDB();
 	}
 
 	private static void deleteAll() {
+		new SupervisorDao().deleteAll();
 		new StudentDao().deleteAll();
 		new ProjectDao().deleteAll();
-		new SupervisorDao().deleteAll();
 	}
 
 	private static void initAdminWithDefaultData() {
