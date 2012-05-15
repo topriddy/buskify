@@ -13,7 +13,7 @@ public class ConfigurationPage extends BaseAdminPage{
 private final String PANEL_ID = "PANEL";
 	
 	public ConfigurationPage(){
-		Panel panel = new ViewProjectPanel(PANEL_ID);
+		Panel panel = new AllocationPanel(PANEL_ID);
 		panel.setOutputMarkupId(true);
 		panel.setOutputMarkupPlaceholderTag(true);
 		add(panel);
