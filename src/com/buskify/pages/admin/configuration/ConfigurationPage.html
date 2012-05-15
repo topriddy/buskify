@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<wicket:head>
+	<script type="text/javascript">
+		$(function() {
+			$('#configuration').addClass("active");
+		});
+	</script>
+</wicket:head>
+</head>
+<body>
+	<wicket:extend>
+		<div class="span3 well">
+			<ul class="nav nav-list pm">
+				<li class="nav-header">Allocation</li>
+				<li id="allocation"><a href="#" wicket:id="allocationLink"><i
+						class="icon-book"></i> Allocation</a></li>
+				<li id="resetAllocation"><a href="#"
+					wicket:id="resetAllocationLink"><i class="icon-book"></i>Reset
+						Allocation</a></li>
+				<li class="nav-header">MISC</li>
+				<li id="settings"><a href="#" wicket:id="settingsLink"><i
+						class="icon-book"></i>Settings</a></li>
+				<li id="help"><a href="#" wicket:id="helpLink"><i
+						class="icon-eye-open"></i>Help</a></li>
+			</ul>
+		</div>
+		<div class="span9 well">
+			<div wicket:id="PANEL"></div>
+		</div>
+	</wicket:extend>
+</body>
+</html>
