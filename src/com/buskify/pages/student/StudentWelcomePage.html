@@ -6,13 +6,21 @@
 </head>
 <body>
 	<wicket:extend>
-		<div class="container-fluid">
-			<div class="row-fluid">
-				<div class="span3 well">
-					<h3>Manage Projects</h3>
-				</div>
-				<div class="span9 well">[stuff to manage projects here]</div>
-			</div>
+		<div class="span well">
+			<ul class="nav nav-list pm">
+				<li class="nav-header">TASKS</li>
+				<li id="newProject"><a href="#"><i class="icon-plus"></i>Profile Information</a></li>
+				<li id="viewAll"><a href="#"><i class="icon-book"></i>Project
+						Selection</a></li>
+				<li id="newProject"><a href="#"><i class="icon-plus"></i>APDF
+						Form </a></li>
+				<li class="nav-header">Misc</li>
+				<li id="help"><a href="#"><i
+						class="icon-eye-open"></i>Help</a></li>
+			</ul>
+		</div>
+		<div class="span9 well">
+			<div wicket:id="PANEL"></div>
 		</div>
 	</wicket:extend>
 </body>
