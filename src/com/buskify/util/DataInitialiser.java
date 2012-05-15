@@ -35,8 +35,8 @@ public class DataInitialiser {
 		initStudentWithDefaultData();
 		initSupervisorWithDefaultData();
 		
-		loadProjectsToDB();
 		loadSupervisorsToDB();
+		loadProjectsToDB();
 		loadStudentsToDB();
 	}
 

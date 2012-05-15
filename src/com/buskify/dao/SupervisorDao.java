@@ -14,4 +14,13 @@ public class SupervisorDao extends AbstractDao<Supervisor> {
 
 		return ofy().query(Supervisor.class).filter("username", username).get();
 	}
+	
+	public Supervisor findByFullName(String fullName) {
+		if (fullName == null || fullName.equals("")) {
+			return null;
+		}
+
+		return ofy().query(Supervisor.class).filter("fullName", fullName).get();
+	}
+	
 }
