@@ -56,7 +56,7 @@ public class DataInitialiser {
 		}
 	}
 
-	private static void initStudentWithDefaultData() {
+	public static void initStudentWithDefaultData() {
 		StudentDao studentDao = new StudentDao();
 		Student student = new Student("student", "password");
 		student.setFullName("Default User");
@@ -73,7 +73,7 @@ public class DataInitialiser {
 		}
 	}
 
-	private static void initSupervisorWithDefaultData() {
+	public static void initSupervisorWithDefaultData() {
 		SupervisorDao supervisorDao = new SupervisorDao();
 		Supervisor supervisor = new Supervisor("supervisor", "password");
 		if (supervisorDao.findByUsername(supervisor.getUsername()) == null) {

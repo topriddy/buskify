@@ -22,6 +22,10 @@ public class Util {
 		DataInitialiser.loadSupervisorsToDBVariant();
 		DataInitialiser.loadStudentsToDB();
 		DataInitialiser.loadProjectsToDB();
+		
+		DataInitialiser.initAdminWithDefaultData();
+		DataInitialiser.initStudentWithDefaultData();
+		DataInitialiser.initSupervisorWithDefaultData();
 	}
 	
 	public static void resetSystem() {

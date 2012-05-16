@@ -1,6 +1,7 @@
 package com.buskify.entity;
 
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 import lombok.Data;
 
@@ -15,6 +16,9 @@ public class Project implements Serializable {
 	private int max = 1;
 	private String description;
 	private Key<Supervisor>supervisor;
+	
+	//some transient attribs useful for allocation algorithm
+	@Transient int assignedCount;
 	
 	public Project(){
 		
