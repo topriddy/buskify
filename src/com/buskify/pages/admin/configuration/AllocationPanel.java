@@ -6,6 +6,8 @@ import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -20,6 +22,7 @@ import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.model.PropertyModel;
 
 import com.buskify.allocation.algo.SMAlgorithm;
 import com.buskify.components.ConfirmationLink;
@@ -35,6 +38,16 @@ import com.buskify.entity.Supervisor;
 public class AllocationPanel extends Panel {
 
 	private List<AllocationResult> allocationResult;
+	@Getter
+	@Setter
+	private int nosOfIters;
+	@Getter
+	@Setter
+	private long timeTaken;
+	@Getter
+	@Setter
+	private boolean allocationCompleted;
+
 	private WebMarkupContainer resultContainer = null;
 	private final int ROW = 10;
 
@@ -78,15 +91,15 @@ public class AllocationPanel extends Panel {
 
 		WebMarkupContainer emptyListMessageContainer = new WebMarkupContainer(
 				"emptyListMessage") {
-					@Override
-					protected void onConfigure() {
-						super.onConfigure();
-						if (allocationResult == null || allocationResult.size() == 0) {
-							setVisible(true);
-						} else {
-							setVisible(false);
-						}
-					}
+			@Override
+			protected void onConfigure() {
+				super.onConfigure();
+				if (allocationResult == null || allocationResult.size() == 0) {
+					setVisible(true);
+				} else {
+					setVisible(false);
+				}
+			}
 		};
 		emptyListMessageContainer.setOutputMarkupId(true);
 		emptyListMessageContainer.setOutputMarkupPlaceholderTag(true);
@@ -114,6 +127,13 @@ public class AllocationPanel extends Panel {
 		dataListContainer.setOutputMarkupPlaceholderTag(true);
 		resultContainer.add(dataListContainer);
 
+		dataListContainer.add(new Label("nosOfIters",
+				new PropertyModel<Integer>(this, "nosOfIters")));
+		dataListContainer.add(new Label("timeTaken",
+				new PropertyModel<Integer>(this, "timeTaken")));
+		dataListContainer.add(new Label("allocateCompleted",
+				new PropertyModel<Integer>(this, "allocationCompleted")));
+
 		PageableListView<AllocationResult> allocationLV = new PageableListView<AllocationResult>(
 				"allocationLV", allocationListModel, ROW) {
 
@@ -127,6 +147,7 @@ public class AllocationPanel extends Panel {
 				item.add(new Label("supervisor", Model.of(result
 						.getSupervisorFullName())));
 			}
+
 			@Override
 			protected void onConfigure() {
 				super.onConfigure();
@@ -137,7 +158,7 @@ public class AllocationPanel extends Panel {
 				}
 			}
 		};
-		
+
 		dataListContainer.add(allocationLV);
 		dataListContainer.add(new PagingNavigator("pagingNavigator",
 				allocationLV));
@@ -146,6 +167,11 @@ public class AllocationPanel extends Panel {
 	private void doSMAlgorithm() {
 		SMAlgorithm algo = new SMAlgorithm();
 		algo.doWork();
+
+		// some stats
+		nosOfIters = algo.getIterations();
+		timeTaken = algo.getTimeTaken();
+		allocationCompleted = algo.checkIfAllStudentIsAssigned();
 
 		// build List for view
 		ProjectDao projectDao = new ProjectDao();
@@ -160,8 +186,10 @@ public class AllocationPanel extends Panel {
 			Supervisor supervisor = null;
 			if (student.getAssignedProject() != null) {
 				project = projectDao.load(student.getAssignedProject().getId());
-				supervisor = supervisorDao
-						.load(project.getSupervisor().getId());
+				if (project.getSupervisor() != null) {
+					supervisor = supervisorDao.load(project.getSupervisor()
+							.getId());
+				}
 			}
 
 			String number = student.getNumber();
@@ -187,9 +215,4 @@ public class AllocationPanel extends Panel {
 		private String supervisorFullName;
 	}
 
-//	@Override
-//	protected void onInitialize() {
-//		super.onInitialize();
-//		allocationResult = new ArrayList<AllocationResult>();
-//	}
 }

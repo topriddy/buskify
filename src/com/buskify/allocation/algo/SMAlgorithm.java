@@ -32,7 +32,7 @@ public class SMAlgorithm implements Serializable{
 		log.debug("Starting allocation algorithm");
 		startTime = System.currentTimeMillis();
 		init();
-
+		iterations = 0;
 		for (int i = 0; i < projects.size(); i++) {
 			iterations = (i + 1);
 			log.debug("Iteration: " + iterations);
@@ -124,7 +124,7 @@ public class SMAlgorithm implements Serializable{
 
 	}
 
-	private boolean checkIfAllStudentIsAssigned() {
+	public boolean checkIfAllStudentIsAssigned() {
 		for (Student student : students) {
 			if (student.getAssignedProject() == null) {
 				return false;

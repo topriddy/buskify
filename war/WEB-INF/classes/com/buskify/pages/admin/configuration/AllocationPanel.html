@@ -35,12 +35,21 @@
 		<a href="#" wicket:id="toggleLink">Click to Toggle Result View</a>
 		<div wicket:id="resultContainer">
 			<h5>Allocation Result</h5>
-			
+
 			<div wicket:id="emptyListMessage" class="alert alert-info">
-				<span class="badge badge-info">Empty!!</span>No Allocation run yet. Empty Dataset.
+				<span class="badge badge-info">Empty!!</span>No Allocation run yet.
+				Empty Dataset.
 			</div>
-			
+
 			<div wicket:id="dataListContainer">
+				<div class="alert alert-info">
+					<ol>
+						<li>Number of Iterations ran: <span wicket:id="nosOfIters"></span></li>
+						<li>Time Taken in milliseconds: <span wicket:id="timeTaken"></span></li>
+						<li>All Student Allocated: <span
+							wicket:id="allocateCompleted"></span></li>
+					</ol>
+				</div>
 				<table class="table table-striped table-bordered table-condensed">
 					<thead>
 						<tr>
