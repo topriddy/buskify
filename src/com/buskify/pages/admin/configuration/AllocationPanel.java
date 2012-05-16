@@ -1,20 +1,40 @@
 package com.buskify.pages.admin.configuration;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.extern.log4j.Log4j;
 
 import org.apache.wicket.feedback.ComponentFeedbackMessageFilter;
+import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.markup.html.list.ListItem;
+import org.apache.wicket.markup.html.list.PageableListView;
+import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
 
 import com.buskify.allocation.algo.SMAlgorithm;
 import com.buskify.components.ConfirmationLink;
 import com.buskify.components.MyFeedbackPanel;
+import com.buskify.dao.ProjectDao;
 import com.buskify.dao.StudentDao;
-import com.buskify.util.Util;
+import com.buskify.dao.SupervisorDao;
+import com.buskify.entity.Project;
+import com.buskify.entity.Student;
+import com.buskify.entity.Supervisor;
 
 @Log4j
 public class AllocationPanel extends Panel{
-	private SMAlgorithm algo = null;
+	private List<AllocationResult> allocationResult = new ArrayList<AllocationResult>();
+	private WebMarkupContainer resultContainer = null;
+	private final int ROW = 10;
 
 	public AllocationPanel(String id){
 		super(id);
@@ -27,25 +47,105 @@ public class AllocationPanel extends Panel{
 			public void onClick() {
 				log.debug("Ran HSM Algorithm Successfully");
 				doSMAlgorithm();
-				
-				
 				AllocationPanel.this.info("Sucess!! Ran Hybrid Stable Marriage Algorithm Successfully");
 			}
 		});
-		
-//		add(new ConfirmationLink("runRandomLink", "Are you sure you want to run Algorithm?"){
-//			@Override
-//			public void onClick() {
-//				System.out.println("Beginning to Reset Allocation");
-//				Util.resetAllocation();
-//				log.debug("Reset Allocation Successfully");
-//				AllocationPanel.this.info("Sucess!! Ran Random Allocation Algorithm Successfully");
-//			}
-//		});
+		addResultView();
+		add(new Link("toggleLink"){
+
+			@Override
+			public void onClick() {
+				boolean visible = !resultContainer.isVisible();
+				resultContainer.setVisible(visible);
+//				target.add(resultContainer);
+			}
+		});
 	}
 	
+	private void addResultView(){
+		resultContainer = new WebMarkupContainer("resultContainer");
+		resultContainer.setOutputMarkupId(true);
+		resultContainer.setOutputMarkupPlaceholderTag(true);
+		add(resultContainer);
+		
+		
+		WebMarkupContainer emptyListMessageContainer = new WebMarkupContainer(
+				"emptyListMessage");
+		emptyListMessageContainer.setOutputMarkupPlaceholderTag(true);
+		emptyListMessageContainer.setVisible(false);
+		resultContainer.add(emptyListMessageContainer);
+		
+		IModel<ArrayList<AllocationResult>> studentListModel = new Model<ArrayList<AllocationResult>>() {
+			@Override
+			public ArrayList<AllocationResult> getObject() {
+				return (ArrayList<AllocationResult>)allocationResult;
+			}
+		};
+		
+		WebMarkupContainer dataListContainer = new WebMarkupContainer(
+				"dataListContainer");
+		dataListContainer.setOutputMarkupPlaceholderTag(true);
+		dataListContainer.setVisible(false);
+		resultContainer.add(dataListContainer);
+
+		PageableListView<AllocationResult> allocationLV = new PageableListView<AllocationResult>("allocationLV", studentListModel, ROW) {
+
+			@Override
+			protected void populateItem(ListItem<AllocationResult> item) {
+				final AllocationResult result = item.getModelObject();
+				item.add(new Label("snos", Model.of(item.getIndex() +1)));
+				item.add(new Label("number", Model.of(result.getNumber())));
+				item.add(new Label("projectTitle", Model.of(result.getProjectTitle())));
+				item.add(new Label("supervisor", Model.of(result.getSupervisorFullName())));
+			}
+		};
+		dataListContainer.add(allocationLV);
+		dataListContainer.add(new PagingNavigator("pagingNavigator", allocationLV));
+		if (allocationResult != null && allocationResult.size() != 0) {
+			dataListContainer.setVisible(true);
+			emptyListMessageContainer.setVisible(false);
+		}else{
+			dataListContainer.setVisible(false);
+			emptyListMessageContainer.setVisible(true);
+		}
+
+	}
 	private void doSMAlgorithm(){
-		algo = new SMAlgorithm();
+		SMAlgorithm algo = new SMAlgorithm();
 		algo.doWork();
+		
+		//build List for view
+		ProjectDao projectDao = new ProjectDao();
+		StudentDao studentDao = new StudentDao();
+		SupervisorDao supervisorDao = new SupervisorDao();
+		
+		allocationResult = new ArrayList<AllocationResult>();
+		List<Student> students = algo.getStudents();
+		
+		for(Student student: students){
+			Project project = null;
+			Supervisor supervisor = null;
+			if(student.getAssignedProject() != null){
+				project = projectDao.load(student.getAssignedProject().getId());
+				supervisor = supervisorDao.load(project.getSupervisor().getId());
+			}
+			
+			String number = student.getNumber();
+			String projectTitle = (project != null? project.getTitle() : "N/A");
+			String supervisorFullName = (supervisor != null? supervisor.getFullName(): "N/A");
+			
+			AllocationResult result = new AllocationResult(number, projectTitle, supervisorFullName);
+			allocationResult.add(result);
+		}
+		
+		//save allocation result to db
+		studentDao.saveAll(algo.getStudents());
+	}
+	@Data
+	@AllArgsConstructor
+	private class AllocationResult implements Serializable{
+		private String number;
+		private String projectTitle;
+		private String supervisorFullName;
 	}
 }

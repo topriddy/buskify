@@ -1,5 +1,6 @@
 package com.buskify.allocation.algo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,9 +17,9 @@ import com.googlecode.objectify.Key;
 
 @Log4j
 @Data
-public class SMAlgorithm {
-	private StudentDao studentDao = new StudentDao();
-	private ProjectDao projectDao = new ProjectDao();
+public class SMAlgorithm implements Serializable{
+	transient private StudentDao studentDao = new StudentDao();
+	transient private ProjectDao projectDao = new ProjectDao();
 	private List<Student> students;
 	private List<Project> projects;
 	private Map<Long, Project> projectMap;
