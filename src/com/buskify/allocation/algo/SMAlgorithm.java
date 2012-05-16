@@ -78,7 +78,7 @@ public class SMAlgorithm implements Serializable{
 		log.debug("Performing Initialization...");
 		students = studentDao.findAll();
 		projects = projectDao.findAll();
-		studentProjectPrefMap = new HashMap<Student, List<Project>>();
+		studentProjectPrefMap = new HashMap<L, List<Project>>();
 
 		projectMap = new HashMap<Long, Project>();
 		// build projectMap for later use

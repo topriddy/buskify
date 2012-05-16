@@ -32,7 +32,8 @@ import com.buskify.entity.Supervisor;
 
 @Log4j
 public class AllocationPanel extends Panel{
-	private List<AllocationResult> allocationResult = new ArrayList<AllocationResult>();
+	
+	private List<AllocationResult> allocationResult;
 	private WebMarkupContainer resultContainer = null;
 	private final int ROW = 10;
 
@@ -62,6 +63,7 @@ public class AllocationPanel extends Panel{
 		});
 	}
 	
+	
 	private void addResultView(){
 		resultContainer = new WebMarkupContainer("resultContainer");
 		resultContainer.setOutputMarkupId(true);
@@ -70,12 +72,23 @@ public class AllocationPanel extends Panel{
 		
 		
 		WebMarkupContainer emptyListMessageContainer = new WebMarkupContainer(
-				"emptyListMessage");
+				"emptyListMessage"){
+			@Override
+			protected void onInitialize() {
+				super.onInitialize();
+				if (allocationResult != null && allocationResult.size() != 0) {
+					setVisible(true);
+				}else{
+					setVisible(false);
+				}
+			}
+		};
+		emptyListMessageContainer.setOutputMarkupId(true);
 		emptyListMessageContainer.setOutputMarkupPlaceholderTag(true);
 		emptyListMessageContainer.setVisible(false);
 		resultContainer.add(emptyListMessageContainer);
 		
-		IModel<ArrayList<AllocationResult>> studentListModel = new Model<ArrayList<AllocationResult>>() {
+		IModel<ArrayList<AllocationResult>> allocationListModel = new Model<ArrayList<AllocationResult>>() {
 			@Override
 			public ArrayList<AllocationResult> getObject() {
 				return (ArrayList<AllocationResult>)allocationResult;
@@ -83,12 +96,22 @@ public class AllocationPanel extends Panel{
 		};
 		
 		WebMarkupContainer dataListContainer = new WebMarkupContainer(
-				"dataListContainer");
+				"dataListContainer"){
+			@Override
+			protected void onInitialize() {
+				super.onInitialize();
+				if (allocationResult != null && allocationResult.size() != 0) {
+					setVisible(false);
+				}else{
+					setVisible(true);
+				}
+			}
+		};
 		dataListContainer.setOutputMarkupPlaceholderTag(true);
 		dataListContainer.setVisible(false);
 		resultContainer.add(dataListContainer);
 
-		PageableListView<AllocationResult> allocationLV = new PageableListView<AllocationResult>("allocationLV", studentListModel, ROW) {
+		PageableListView<AllocationResult> allocationLV = new PageableListView<AllocationResult>("allocationLV", allocationListModel, ROW) {
 
 			@Override
 			protected void populateItem(ListItem<AllocationResult> item) {
@@ -102,11 +125,11 @@ public class AllocationPanel extends Panel{
 		dataListContainer.add(allocationLV);
 		dataListContainer.add(new PagingNavigator("pagingNavigator", allocationLV));
 		if (allocationResult != null && allocationResult.size() != 0) {
-			dataListContainer.setVisible(true);
-			emptyListMessageContainer.setVisible(false);
-		}else{
 			dataListContainer.setVisible(false);
 			emptyListMessageContainer.setVisible(true);
+		}else{
+			dataListContainer.setVisible(true);
+			emptyListMessageContainer.setVisible(false);
 		}
 
 	}
@@ -137,9 +160,10 @@ public class AllocationPanel extends Panel{
 			AllocationResult result = new AllocationResult(number, projectTitle, supervisorFullName);
 			allocationResult.add(result);
 		}
+		log.debug("Allocation Result Size is: " + allocationResult.size());
 		
 		//save allocation result to db
-		studentDao.saveAll(algo.getStudents());
+		studentDao.saveAll(students);
 	}
 	@Data
 	@AllArgsConstructor
@@ -147,5 +171,10 @@ public class AllocationPanel extends Panel{
 		private String number;
 		private String projectTitle;
 		private String supervisorFullName;
+	}
+	@Override
+	protected void onInitialize() {
+		super.onInitialize();
+		allocationResult = new ArrayList<AllocationResult>() ;
 	}
 }
