@@ -62,8 +62,17 @@ public class StudentDao extends AbstractDao<Student> {
 	}
 	
 	public List<Student> findBySupervisor(Supervisor supervisor){
-		Query<Student> query= ofy().query(Student.class).
-				filter("assignedProject", new Key<Supervisor>(Supervisor.class, supervisor.getId()));
-		return query.list();
+		List<Project> projects = new ProjectDao().findBySupervisor(supervisor);
+		List<Student> students = new ArrayList<Student>();
+		for(Project project : projects){
+			List<Student> student = ofy().query(Student.class).filter("assignedProject", project).list();
+			if(student != null){
+				for(Student s: student){
+					students.add(s);
+				}
+			}
+		}
+		
+		return students;
 	}
 }

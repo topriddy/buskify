@@ -12,7 +12,7 @@ public class StudentWelcomePage extends BaseStudentPage{
 	
 	
 	public StudentWelcomePage(){
-		Panel panel = new ProjectSelectionPanel(PANEL_ID);
+		Panel panel = new StudentProfilePanel(PANEL_ID);
 		panel.setOutputMarkupId(true);
 		panel.setOutputMarkupPlaceholderTag(true);
 		add(panel);

@@ -14,6 +14,18 @@
 <body>
 	<wicket:panel>
 		<h4>Student Profile</h4>
+		<div>
+			<div wicket:id="emptyProjectMessage" class="alert alert-info">
+				No project has been assigned to you yet.
+			</div>
+			<div wicket:id="projectDetails">
+				A Project has already been allocated to you. Details Below:
+				<ol>
+					<strong>Project Title:</strong><li wicket:id="projectTitle">[insert project title here]</li>
+					<strong>Supervisor Name:</strong><li wicket:id="supervisor">[insert supervisor here]</li>
+				</ol>
+			</div>
+		</div>
 	</wicket:panel>
 </body>
 </html>

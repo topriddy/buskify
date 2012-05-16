@@ -2,6 +2,8 @@ package com.buskify.entity;
 
 import javax.persistence.Id;
 
+import com.googlecode.objectify.annotation.Cached;
+
 import lombok.Data;
 
 @Data

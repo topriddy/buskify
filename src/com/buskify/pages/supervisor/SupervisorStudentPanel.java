@@ -30,16 +30,18 @@ public class SupervisorStudentPanel extends Panel {
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
-		final Supervisor supervisor = (Supervisor)UserSession.get().getAppUser();
-		
+		final Supervisor supervisor = (Supervisor) UserSession.get()
+				.getAppUser();
+
 		IModel<ArrayList<Student>> studentListModel = new Model<ArrayList<Student>>() {
 			@Override
 			public ArrayList<Student> getObject() {
 				// TODO Auto-generated method stub
-				return (ArrayList<Student>) new StudentDao().findBySupervisor(supervisor);
+				return (ArrayList<Student>) new StudentDao()
+						.findBySupervisor(supervisor);
 			}
 		};
-		
+
 		WebMarkupContainer emptyListMessageContainer = new WebMarkupContainer(
 				"emptyListMessage");
 		emptyListMessageContainer.setOutputMarkupPlaceholderTag(true);
@@ -52,25 +54,32 @@ public class SupervisorStudentPanel extends Panel {
 		dataListContainer.setVisible(false);
 		add(dataListContainer);
 
-		List<Student> projectList = new StudentDao().findBySupervisor(supervisor);
-		PageableListView<Student> projectLV = new PageableListView<Student>("studentLV", studentListModel, ROW) {
+		List<Student> projectList = new StudentDao()
+				.findBySupervisor(supervisor);
+		PageableListView<Student> projectLV = new PageableListView<Student>(
+				"studentLV", studentListModel, ROW) {
 
 			@Override
 			protected void populateItem(ListItem<Student> item) {
 				final Student student = item.getModelObject();
-				item.add(new Label("snos", Model.of(item.getIndex() +1)));
+				Project project = new ProjectDao().load(student
+						.getAssignedProject().getId());
+
+				item.add(new Label("snos", Model.of(item.getIndex() + 1)));
 				item.add(new Label("number", Model.of(student.getNumber())));
 				item.add(new Label("course", Model.of(student.getCourse())));
 				item.add(new Label("stream", Model.of(student.getStream())));
+				item.add(new Label("projectTitle", Model.of(project.getTitle())));
 			}
-			
+
 		};
 		dataListContainer.add(projectLV);
-		dataListContainer.add(new PagingNavigator("pagingNavigator", projectLV));
+		dataListContainer
+				.add(new PagingNavigator("pagingNavigator", projectLV));
 		if (projectList != null && projectList.size() != 0) {
 			dataListContainer.setVisible(true);
 			emptyListMessageContainer.setVisible(false);
-		}else{
+		} else {
 			dataListContainer.setVisible(false);
 			emptyListMessageContainer.setVisible(true);
 		}
