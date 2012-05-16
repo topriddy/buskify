@@ -180,8 +180,12 @@ public class AllocationPanel extends Panel {
 
 		allocationResult = new ArrayList<AllocationResult>();
 		List<Student> students = algo.getStudents();
-
+		
+		int i = 0;
 		for (Student student : students) {
+			//begin: get assigned projects for save
+			
+			//
 			Project project = null;
 			Supervisor supervisor = null;
 			if (student.getAssignedProject() != null) {
