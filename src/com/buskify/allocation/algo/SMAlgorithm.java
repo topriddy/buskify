@@ -23,7 +23,7 @@ public class SMAlgorithm implements Serializable{
 	private List<Student> students;
 	private List<Project> projects;
 	private Map<Long, Project> projectMap;
-	private Map<Student, List<Project>> studentProjectPrefMap;
+	private Map<Long, List<Project>> studentProjectPrefMap;
 	private Long startTime, endTime;
 	private Long timeTaken;
 	private int iterations = 0;
@@ -51,8 +51,7 @@ public class SMAlgorithm implements Serializable{
 				// look up ProjectChoice
 				// the projectChoice might not be same in the map memory,hence
 				// additional lookup
-				log.debug("Student: " + student);
-				Project projectChoice = studentProjectPrefMap.get(student).get(
+				Project projectChoice = studentProjectPrefMap.get(student.getId()).get(
 						i);
 
 				Project project = projectMap.get(projectChoice.getId());
@@ -78,7 +77,7 @@ public class SMAlgorithm implements Serializable{
 		log.debug("Performing Initialization...");
 		students = studentDao.findAll();
 		projects = projectDao.findAll();
-		studentProjectPrefMap = new HashMap<L, List<Project>>();
+		studentProjectPrefMap = new HashMap<Long, List<Project>>();
 
 		projectMap = new HashMap<Long, Project>();
 		// build projectMap for later use
@@ -114,7 +113,7 @@ public class SMAlgorithm implements Serializable{
 			}
 		}
 		// store in map
-		studentProjectPrefMap.put(student, choiceProject);
+		studentProjectPrefMap.put(student.getId(), choiceProject);
 
 		Key<Project> projectKeys[] = new Key[choiceProject.size()];
 		for (int i = 0; i < choiceProject.size(); i++) {
