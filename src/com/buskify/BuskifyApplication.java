@@ -21,7 +21,7 @@ public class BuskifyApplication extends WebApplication {
 		super.init();
 		BasicConfigurator.configure();
 		getResourceSettings().setResourcePollFrequency(null);
-//		initWithTestData();
+		initWithDefaultData();
 
 		mountPackage("allocator", SignInPage.class);
 		mountPackage("allocator/admin", ProjectManagementPage.class);
@@ -53,7 +53,7 @@ public class BuskifyApplication extends WebApplication {
 		return new MemorySizeEvictionStrategy(Bytes.megabytes(2));
 	}
 
-	public void initWithTestData() {
+	public void initWithDefaultData() {
 		DataInitialiser.initWithDefaultData();
 	}
 

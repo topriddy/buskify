@@ -26,16 +26,10 @@ public class DataInitialiser {
 
 	public static void initWithDefaultData() {
 		log.info("Data Initializer.....");
-		deleteAll();
 
 		initAdminWithDefaultData();
 		initStudentWithDefaultData();
 		initSupervisorWithDefaultData();
-
-		loadSupervisorsToDBVariant();
-		// loadSupervisorsToDB();
-		loadStudentsToDB();
-		loadProjectsToDB();
 	}
 
 	private static void deleteAll() {
