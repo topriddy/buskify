@@ -1,10 +1,13 @@
 package com.buskify.entity;
 
+import javax.persistence.Cacheable;
+
 import lombok.Data;
 
 import com.googlecode.objectify.Key;
 
 @Data
+@Cacheable
 public class Student extends AppUser implements java.io.Serializable {
 	private static final long serialVersionUID = 1650476930164771007L;
 	private Key<Project>[] projectPreferences;

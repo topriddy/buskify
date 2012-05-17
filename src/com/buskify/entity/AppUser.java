@@ -1,5 +1,6 @@
 package com.buskify.entity;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Id;
 
 import com.googlecode.objectify.annotation.Cached;
@@ -7,6 +8,7 @@ import com.googlecode.objectify.annotation.Cached;
 import lombok.Data;
 
 @Data
+@Cacheable
 public class AppUser implements java.io.Serializable {
 	@Id
 	private Long id;

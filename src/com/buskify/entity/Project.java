@@ -1,5 +1,6 @@
 package com.buskify.entity;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 
@@ -9,6 +10,7 @@ import com.googlecode.objectify.Key;
 import java.io.Serializable;
 
 @Data
+@Cacheable
 public class Project implements Serializable {
 	@Id
 	private Long id;
