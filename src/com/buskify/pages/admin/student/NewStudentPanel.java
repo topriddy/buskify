@@ -95,7 +95,6 @@ public class NewStudentPanel extends Panel {
 					course = stream = null;
 				}
 			});
-
 		}
 	}
 }

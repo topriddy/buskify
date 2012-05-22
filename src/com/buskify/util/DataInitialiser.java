@@ -7,10 +7,12 @@ import java.util.logging.Logger;
 
 import com.buskify.dao.AdminDao;
 import com.buskify.dao.ProjectDao;
+import com.buskify.dao.SettingsDao;
 import com.buskify.dao.StudentDao;
 import com.buskify.dao.SupervisorDao;
 import com.buskify.entity.Admin;
 import com.buskify.entity.Project;
+import com.buskify.entity.Settings;
 import com.buskify.entity.Student;
 import com.buskify.entity.Supervisor;
 
@@ -30,12 +32,14 @@ public class DataInitialiser {
 		initAdminWithDefaultData();
 		initStudentWithDefaultData();
 		initSupervisorWithDefaultData();
+		initSettingsWithDefaultData();
 	}
 
 	private static void deleteAll() {
 		new SupervisorDao().deleteAllExemptDefaultSupervisor();
 		new StudentDao().deleteAllExemptDefaultStudent();
 		new ProjectDao().deleteAll();
+		new SettingsDao().deleteAll();
 	}
 
 	public static void initAdminWithDefaultData() {
@@ -76,6 +80,18 @@ public class DataInitialiser {
 			log.info("Supervisor Saved Successfully");
 		} else {
 			log.info("Supervisor Already Exists...not recreating");
+		}
+	}
+
+	public static void initSettingsWithDefaultData() {
+		SettingsDao settingsDao = new SettingsDao();
+		Settings settings = new Settings(null, "maxAssignableStudents", "5");
+		if (settingsDao.findByName(settings.getName()) == null) {
+			log.info("Settings Does Not Already Exists...now attempting to create");
+			settingsDao.save(settings);
+			log.info("Settings Saved Successfully");
+		} else {
+			log.info("Settings Already Exists...not recreating");
 		}
 	}
 

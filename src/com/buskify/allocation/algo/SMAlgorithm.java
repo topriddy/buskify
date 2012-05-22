@@ -10,16 +10,24 @@ import lombok.Data;
 import lombok.extern.log4j.Log4j;
 
 import com.buskify.dao.ProjectDao;
+import com.buskify.dao.SettingsDao;
 import com.buskify.dao.StudentDao;
+import com.buskify.dao.SupervisorDao;
 import com.buskify.entity.Project;
+import com.buskify.entity.Settings;
 import com.buskify.entity.Student;
+import com.buskify.entity.Supervisor;
 import com.googlecode.objectify.Key;
 
 @Log4j
 @Data
-public class SMAlgorithm implements Serializable{
+public class SMAlgorithm implements Serializable {
 	transient private StudentDao studentDao = new StudentDao();
 	transient private ProjectDao projectDao = new ProjectDao();
+	transient private SupervisorDao supervisorDao = new SupervisorDao();
+	transient private SettingsDao settingsDao = new SettingsDao();
+	transient private int maxAssignableStudents = 0;
+
 	private List<Student> students;
 	private List<Project> projects;
 	private Map<Long, Project> projectMap;
@@ -51,17 +59,34 @@ public class SMAlgorithm implements Serializable{
 				// look up ProjectChoice
 				// the projectChoice might not be same in the map memory,hence
 				// additional lookup
-				Project projectChoice = studentProjectPrefMap.get(student.getId()).get(
-						i);
+				Project projectChoice = studentProjectPrefMap.get(
+						student.getId()).get(i);
 
 				Project project = projectMap.get(projectChoice.getId());
 
+				Key<Supervisor> supervisorKey = project.getSupervisor();
+				Supervisor supervisor = null;
+				if (supervisorKey != null) {
+					supervisor = supervisorDao.load(supervisorKey.getId());
+				}
+
+				// check if supervisor limit for particular project has been
+				// exceeded
+				if (supervisor != null) {
+					if (maxAssignableStudents != 0
+							&& supervisor.getAssignedCount() >= maxAssignableStudents) {
+						continue;
+					}
+				}
 				// check if project assigned limit hasnt been reached and then
 				// assign
 				if (project.getAssignedCount() < project.getMax()) {
 					student.setAssignedProject(new Key<Project>(Project.class,
 							project.getId()));
 					project.setAssignedCount(project.getAssignedCount() + 1);
+					if(supervisor != null){
+						supervisor.setAssignedCount(supervisor.getAssignedCount() + 1);
+					}
 				}
 			}
 		}
@@ -85,6 +110,18 @@ public class SMAlgorithm implements Serializable{
 			projectMap.put(project.getId(), project);
 		}
 		normalizePreferences(students);
+
+		// get and set the max nos of assignable courses to a supervisor
+		Settings settings = settingsDao.findByName("maxAssignableStudents");
+		if (settings != null) {
+			try {
+				maxAssignableStudents = Integer.parseInt(settings.getValue());
+			} catch (Exception ex) {
+				log.debug(
+						"Exception thrown trying to parse maxAssignableStudents",
+						ex);
+			}
+		}
 	}
 
 	/*
